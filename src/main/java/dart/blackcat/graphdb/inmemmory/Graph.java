@@ -13,14 +13,27 @@ public class Graph implements Identifiable, Serializable {
 	private static final long serialVersionUID = 6288219714830644682L;
 	
 	private long id;
-	private Map<Long, Node> nodeMap				= new HashMap<Long, Node>();
+	private Map<Long, Node> nodeMap = new HashMap<Long, Node>();
+	private Map<Long, Edge> edgeMap	= new HashMap<Long, Edge>();
 	
 	private Map<Node, Set<Edge>> beginNodeEdgeMap	= new HashMap<Node, Set<Edge>>();
 	private Map<Node, Set<Edge>> endNodeEdgeMap		= new HashMap<Node, Set<Edge>>();
 	
 	
+	
+	public void clear() {
+		nodeMap.clear();
+		edgeMap.clear();
+		beginNodeEdgeMap.clear();
+		endNodeEdgeMap.clear();
+	}
+	
 	public void addNode(Node node) {
 		nodeMap.put(node.getId(), node);
+	}
+	
+	public boolean hasNode(long nodeId) {
+		return nodeMap.containsKey(nodeId);
 	}
 	
 	public void addEdge(Edge edge) throws Exception {
@@ -31,6 +44,8 @@ public class Graph implements Identifiable, Serializable {
 		if ( ! nodeMap.containsKey(edge.getEndNode().getId())) {
 			throw new Exception("End node not found in graph.");
 		}
+		
+		edgeMap.put(edge.getId(), edge);
 		
 		Set<Edge> beginningEdges = beginNodeEdgeMap.get(edge.getBeginNode());
 		if (beginningEdges == null) {
@@ -45,6 +60,10 @@ public class Graph implements Identifiable, Serializable {
 		}
 		endingEdges.add(edge);
 		endNodeEdgeMap.put(edge.getEndNode(), endingEdges);
+	}
+	
+	public boolean hasEdge(long edgeId) {
+		return edgeMap.containsKey(edgeId);
 	}
 	
 	public Set<Edge> getEdges(Node node) {
@@ -119,6 +138,9 @@ public class Graph implements Identifiable, Serializable {
 	public <T extends Graph> T clone() {
 		T clone = (T) new Graph();
 		clone.id = this.id;
+		clone.beginNodeEdgeMap = this.beginNodeEdgeMap;
+		clone.endNodeEdgeMap = this.endNodeEdgeMap;
+		clone.nodeMap = clone.nodeMap;
 		return clone;
 	}
 }

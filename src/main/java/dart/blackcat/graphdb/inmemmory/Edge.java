@@ -80,6 +80,8 @@ public class Edge implements Identifiable, Serializable {
 	public <T extends Edge> T clone() {
 		T clone = (T) new Edge();
 		clone.id = this.id;
+		clone.beginNode = this.beginNode;
+		clone.endNode = this.endNode;
 		return clone;
 	}
 }
