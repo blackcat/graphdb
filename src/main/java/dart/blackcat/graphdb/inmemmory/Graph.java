@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Observable;
 import java.util.Set;
 
 import dart.blackcat.graphdb.Identifiable;
 
-public class Graph implements Identifiable, Serializable {
+public class Graph extends Observable implements Identifiable, Serializable {
 
 	private static final long serialVersionUID = 6288219714830644682L;
 	
@@ -26,10 +27,14 @@ public class Graph implements Identifiable, Serializable {
 		edgeMap.clear();
 		beginNodeEdgeMap.clear();
 		endNodeEdgeMap.clear();
+		
+		notifyObservers();
 	}
 	
 	public void addNode(Node node) {
 		nodeMap.put(node.getId(), node);
+		
+		notifyObservers();
 	}
 	
 	public boolean hasNode(long nodeId) {
@@ -60,6 +65,8 @@ public class Graph implements Identifiable, Serializable {
 		}
 		endingEdges.add(edge);
 		endNodeEdgeMap.put(edge.getEndNode(), endingEdges);
+		
+		notifyObservers();
 	}
 	
 	public boolean hasEdge(long edgeId) {
