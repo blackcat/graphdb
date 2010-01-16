@@ -2,6 +2,9 @@ package dart.blackcat.graphdb.test.inmemory;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,23 +16,60 @@ import dart.blackcat.graphdb.test.IdentifiableTestCase;
 public class GraphTestCase extends IdentifiableTestCase<Graph> {
 	
 	private Graph g = new Graph();
+	
+	private Node n0 = NodeTestCase.initialize(0);
+	private Node n1 = NodeTestCase.initialize(1);
+	private Node n2 = NodeTestCase.initialize(2);
+
+	private Edge e0 = EdgeTestCase.initialize(0);
+	private Edge e1 = EdgeTestCase.initialize(1);
+
+	@Override
+	@Before
+	public void init() {
+		g.setId(0);
+		
+		a = new Graph[3];
+		b = initialize(0);
+		
+		for (int i = 0; i < a.length; i++) {
+			a[i] = initialize(i);
+		}
+
+		g.addNode(n0);
+		g.addNode(n1);
+		g.addNode(n2);
+		
+		e0.setBeginNode(n0);
+		e0.setEndNode(n1);
+		e1.setBeginNode(n1);
+		e1.setEndNode(n2);
+		
+		try {
+			g.addEdge(e0);
+			g.addEdge(e1);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		
+		origin = initialize(0);
+		clone = origin.clone();
+	}
 
 	@Test
 	public void testAddNode() {
-		g.clear();
-		
-		Node n = NodeTestCase.initialize(0);
+		Node n = NodeTestCase.initialize(10);
 		g.addNode(n);
 		assertTrue( g.hasNode(n.getId()) );
 	}
 
 	@Test
 	public void testAddEdge() {
-		g.clear();
+		Edge e = new Edge();
+		e.setId(10);
+		e.setBeginNode(n0);
+		e.setEndNode(n2);
 		
-		Edge e = EdgeTestCase.initialize(0);
-		g.addNode(e.getBeginNode());
-		g.addNode(e.getEndNode());
 		try {
 			g.addEdge(e);
 		} catch (Exception ex) {
@@ -40,21 +80,11 @@ public class GraphTestCase extends IdentifiableTestCase<Graph> {
 
 	@Test
 	public void testGetEdges() {
-		fail("Not yet implemented");
-	}
-
-	@Override
-	@Before
-	public void init() {
-		g.setId(0);
-		
-		a = new Graph[3];
-		b = initialize(13);
-		
-		for (int i = 0; i < a.length; i++) {
-			a[i] = initialize(i);
-		}
-		
+		Set<Edge> edges = g.getEdges(n1);
+		Set<Edge> origin = new HashSet<Edge>();
+		origin.add(e0);
+		origin.add(e1);
+		assertEquals(origin, edges);
 	}
 
 	public static Graph initialize(int seed) {
@@ -74,6 +104,8 @@ public class GraphTestCase extends IdentifiableTestCase<Graph> {
 		e1_2.setId(1);
 		e1_2.setBeginNode(n1);
 		e1_2.setEndNode(n2);
+		
+		g0.setId(seed);
 
 		g0.addNode(n0);
 		g0.addNode(n1);

@@ -140,7 +140,8 @@ public class Graph implements Identifiable, Serializable {
 		clone.id = this.id;
 		clone.beginNodeEdgeMap = this.beginNodeEdgeMap;
 		clone.endNodeEdgeMap = this.endNodeEdgeMap;
-		clone.nodeMap = clone.nodeMap;
+		clone.nodeMap = this.nodeMap;
+		clone.edgeMap = this.edgeMap;
 		return clone;
 	}
 }
