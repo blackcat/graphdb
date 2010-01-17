@@ -27,13 +27,15 @@ public class Graph extends Observable implements Identifiable, Serializable {
 		edgeMap.clear();
 		beginNodeEdgeMap.clear();
 		endNodeEdgeMap.clear();
-		
+
+		setChanged();
 		notifyObservers();
 	}
 	
 	public void addNode(Node node) {
 		nodeMap.put(node.getId(), node);
 		
+		setChanged();
 		notifyObservers();
 	}
 	
@@ -41,13 +43,13 @@ public class Graph extends Observable implements Identifiable, Serializable {
 		return nodeMap.containsKey(nodeId);
 	}
 	
-	public void addEdge(Edge edge) throws Exception {
+	public void addEdge(Edge edge) throws RuntimeException {
 		if ( ! nodeMap.containsKey(edge.getBeginNode().getId())) {
-			throw new Exception("Begin node not found in graph.");
+			throw new RuntimeException("Begin node not found in graph.");
 		}
 
 		if ( ! nodeMap.containsKey(edge.getEndNode().getId())) {
-			throw new Exception("End node not found in graph.");
+			throw new RuntimeException("End node not found in graph.");
 		}
 		
 		edgeMap.put(edge.getId(), edge);
@@ -65,7 +67,8 @@ public class Graph extends Observable implements Identifiable, Serializable {
 		}
 		endingEdges.add(edge);
 		endNodeEdgeMap.put(edge.getEndNode(), endingEdges);
-		
+
+		setChanged();
 		notifyObservers();
 	}
 	
@@ -76,10 +79,18 @@ public class Graph extends Observable implements Identifiable, Serializable {
 	public Set<Edge> getEdges(Node node) {
 		Set<Edge> result = new HashSet<Edge>();
 
-		result.addAll(beginNodeEdgeMap.get(node));
-		result.addAll(endNodeEdgeMap.get(node));
+		if (beginNodeEdgeMap.containsKey(node)) {
+			result.addAll(beginNodeEdgeMap.get(node));
+		}
+		if (endNodeEdgeMap.containsKey(node)) {
+			result.addAll(endNodeEdgeMap.get(node));
+		}
 		
 		return result;
+	}
+	
+	public Set<Node> getNodes() {
+		return new HashSet<Node>( nodeMap.values() );
 	}
 	
 
