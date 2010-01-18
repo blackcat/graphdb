@@ -1,4 +1,4 @@
-package dart.blackcat.graphdb.inmemmory;
+package dart.blackcat.graphdb.store;
 
 import java.io.Serializable;
 
@@ -8,8 +8,8 @@ public class Edge implements Identifiable, Serializable {
 	
 	private static final long serialVersionUID = 4704029787019754216L;
 	private long id;
-	private Node beginNode;
-	private Node endNode;
+	private Vertex beginNode;
+	private Vertex endNode;
 
 	public long getId() {
 		return id;
@@ -19,19 +19,19 @@ public class Edge implements Identifiable, Serializable {
 		this.id = id;
 	}
 
-	public Node getBeginNode() {
+	public Vertex getBeginNode() {
 		return beginNode;
 	}
 
-	public void setBeginNode(Node beginNode) {
+	public void setBeginNode(Vertex beginNode) {
 		this.beginNode = beginNode;
 	}
 
-	public Node getEndNode() {
+	public Vertex getEndNode() {
 		return endNode;
 	}
 
-	public void setEndNode(Node endNode) {
+	public void setEndNode(Vertex endNode) {
 		this.endNode = endNode;
 	}
 

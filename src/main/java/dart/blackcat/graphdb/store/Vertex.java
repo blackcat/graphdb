@@ -1,10 +1,10 @@
-package dart.blackcat.graphdb.inmemmory;
+package dart.blackcat.graphdb.store;
 
 import java.io.Serializable;
 
 import dart.blackcat.graphdb.Identifiable;
 
-public class Node implements Identifiable, Serializable, Cloneable {
+public class Vertex implements Identifiable, Serializable, Cloneable {
 	
 	private static final long serialVersionUID = -8381475532419657121L;
 	private long id;
@@ -31,15 +31,15 @@ public class Node implements Identifiable, Serializable, Cloneable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Node other = (Node) obj;
+		Vertex other = (Vertex) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends Node> T clone() {
-		T clone = (T) new Node();
+	public <T extends Vertex> T clone() {
+		T clone = (T) new Vertex();
 		clone.id = this.id;
 		return clone;
 	}

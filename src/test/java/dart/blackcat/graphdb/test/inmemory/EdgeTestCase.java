@@ -1,6 +1,6 @@
 package dart.blackcat.graphdb.test.inmemory;
 
-import dart.blackcat.graphdb.inmemmory.Edge;
+import dart.blackcat.graphdb.store.Edge;
 import dart.blackcat.graphdb.test.IdentifiableTestCase;
 
 
