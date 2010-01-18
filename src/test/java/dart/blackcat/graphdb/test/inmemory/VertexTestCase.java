@@ -4,7 +4,7 @@ import dart.blackcat.graphdb.store.Vertex;
 import dart.blackcat.graphdb.test.IdentifiableTestCase;
 
 
-public class NodeTestCase extends IdentifiableTestCase<Vertex> {
+public class VertexTestCase extends IdentifiableTestCase<Vertex> {
 
 	@Override
 	public void init() {

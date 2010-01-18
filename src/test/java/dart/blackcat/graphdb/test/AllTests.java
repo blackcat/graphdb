@@ -5,11 +5,11 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 import dart.blackcat.graphdb.test.inmemory.EdgeTestCase;
-import dart.blackcat.graphdb.test.inmemory.NodeTestCase;
+import dart.blackcat.graphdb.test.inmemory.VertexTestCase;
 
 @RunWith(Suite.class)
 @SuiteClasses({
 	EdgeTestCase.class,
-	NodeTestCase.class,
+	VertexTestCase.class,
 })
 public class AllTests {}

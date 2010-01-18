@@ -14,12 +14,12 @@ public class EdgeTestCase extends IdentifiableTestCase<Edge> {
 		for (int i = 0; i < a.length; i++) {
 			a[i] = new Edge();
 			a[i].setId(i);
-			a[i].setBeginNode(NodeTestCase.initialize(i * 10 + 1));
-			a[i].setEndNode(NodeTestCase.initialize(i * 10 + 2));
+			a[i].setBeginNode(VertexTestCase.initialize(i * 10 + 1));
+			a[i].setEndNode(VertexTestCase.initialize(i * 10 + 2));
 		}
 		b.setId(0);
-		b.setBeginNode(NodeTestCase.initialize(1));
-		b.setEndNode(NodeTestCase.initialize(2));
+		b.setBeginNode(VertexTestCase.initialize(1));
+		b.setEndNode(VertexTestCase.initialize(2));
 		
 		origin = a[0];
 		clone = origin.clone();
@@ -28,8 +28,8 @@ public class EdgeTestCase extends IdentifiableTestCase<Edge> {
 	public static Edge initialize(int seed) {
 		Edge n = new Edge();
 		n.setId(seed);
-		n.setBeginNode(NodeTestCase.initialize(seed * 10 + 1));
-		n.setEndNode(NodeTestCase.initialize(seed * 10 + 2));
+		n.setBeginNode(VertexTestCase.initialize(seed * 10 + 1));
+		n.setEndNode(VertexTestCase.initialize(seed * 10 + 2));
 		return n;
 	}
 }
