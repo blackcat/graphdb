@@ -18,14 +18,18 @@ public class InMemoryGraphDAO implements GraphDAO {
 
 	@Override
 	public void addEdge(Edge edge, Vertex v1, Vertex v2) {
-		// TODO Auto-generated method stub
-		
+		if (edge == null || v1 == null || v2 == null) {
+			throw new NullPointerException("Arguments should not be null.");
+		}
+		graph.addEdge(edge, v1, v2);
 	}
 
 	@Override
 	public void addVertex(Vertex vertex) {
-		// TODO Auto-generated method stub
-		
+		if (vertex == null) {
+			throw new NullPointerException("Argument should not be null.");
+		}
+		graph.addVertex(vertex);
 	}
 
 	@Override
@@ -36,26 +40,34 @@ public class InMemoryGraphDAO implements GraphDAO {
 
 	@Override
 	public boolean containsEdge(Edge edge) {
-		// TODO Auto-generated method stub
-		return false;
+		if (edge == null) {
+			throw new NullPointerException("Argument should not be null.");
+		}
+		return graph.containsEdge(edge);
 	}
 
 	@Override
 	public boolean containsVertex(Vertex vertex) {
-		// TODO Auto-generated method stub
-		return false;
+		if (vertex == null) {
+			throw new NullPointerException("Argument should not be null.");
+		}
+		return graph.containsVertex(vertex);
 	}
 
 	@Override
-	public boolean deleteEdge(Edge edge) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeEdge(Edge edge) {
+		if (edge == null) {
+			throw new NullPointerException("Argument should not be null.");
+		}
+		return graph.removeEdge(edge);
 	}
 
 	@Override
-	public boolean deleteVertex(Vertex vertex) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeVertex(Vertex vertex) {
+		if (vertex == null) {
+			throw new NullPointerException("Argument should not be null.");
+		}
+		return graph.removeVertex(vertex);
 	}
 
 	@Override

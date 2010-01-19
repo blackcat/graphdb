@@ -21,7 +21,7 @@ public interface GraphDAO {
 	 * @return <code>true</code> in case vertex was deleted, <code>false</code> otherwise
 	 * @throws NullPointerException in case argument is <code>null</code>
 	 */
-	public boolean deleteVertex(Vertex vertex);
+	public boolean removeVertex(Vertex vertex);
 	
 	/**
 	 * @return <code>true</code> in case graph contains vertex, <code>false</code> otherwise
@@ -31,7 +31,7 @@ public interface GraphDAO {
 	
 	
 	public void addEdge(Edge edge, Vertex v1, Vertex v2);
-	public boolean deleteEdge(Edge edge);
+	public boolean removeEdge(Edge edge);
 	public boolean containsEdge(Edge edge);
 	
 	public boolean hasEdge(Vertex v1, Vertex v2);
