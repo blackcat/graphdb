@@ -1,8 +1,8 @@
 package dart.blackcat.graphdb.store;
 
-import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 
 public interface GraphStore {
 
-	public Graph<Vertex, Edge> getGraph();
+	public DirectedSparseMultigraph<Vertex, Edge> getGraph();
 }

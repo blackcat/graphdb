@@ -4,13 +4,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.impl.LogFactoryImpl;
 
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
-import edu.uci.ics.jung.graph.Graph;
 
 public class InMemoryGraphStore implements GraphStore {
 	
 	private static final Log log = LogFactoryImpl.getLog(InMemoryGraphStore.class);
 	
-	protected Graph<Vertex, Edge> graph;
+	protected DirectedSparseMultigraph<Vertex, Edge> graph;
 
 	public InMemoryGraphStore() {
 
@@ -51,7 +50,7 @@ public class InMemoryGraphStore implements GraphStore {
 		graph.addEdge(edges[16], nodes[3], nodes[3]);
 	}
 	
-	public Graph<Vertex, Edge> getGraph() {
+	public DirectedSparseMultigraph<Vertex, Edge> getGraph() {
 		return graph;
 	}
 
